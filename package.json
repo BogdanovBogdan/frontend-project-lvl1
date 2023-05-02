@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/BogdanovBogdan/frontend-project-lvl1/workflows/hexlet-check/badge.svg)](https://github.com/BogdanovBogdan/frontend-project-lvl1/actions)",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +13,9 @@
   },
   "author": "Bogdan Bogdanov",
   "license": "ISC",
+  "bin": {
+    "brain-games": "bin/brain-games.js"
+  },
   "bugs": {
     "url": "https://github.com/BogdanovBogdan/frontend-project-lvl1/issues"
   },
