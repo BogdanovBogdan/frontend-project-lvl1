@@ -1,5 +1,5 @@
 import readlineSync from 'readline-sync';
-import { getName } from '../src/cli.js';
+import greeting, { getName } from '../src/cli.js';
 
 console.log('Answer "yes" if the number is even, otherwise answer "no".');
 
@@ -13,9 +13,8 @@ function isEven(number) {
   return isEvenNumber ? 'yes' : 'no';
 }
 
-export default function isEvenGame() {
+function evenGame(numberAttemps = 3) {
   const name = getName();
-  const numberAttemps = 3;
   let correctAnswers = 0;
 
   for (let i = 0; i < numberAttemps; i += 1) {
@@ -42,3 +41,10 @@ export default function isEvenGame() {
     console.log(`Let's try again, ${name}!`);
   }
 }
+
+function init() {
+  greeting();
+  evenGame();
+}
+
+init();
