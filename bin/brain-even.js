@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import readlineSync from 'readline-sync';
 import greeting, { getName } from '../src/cli.js';
 
