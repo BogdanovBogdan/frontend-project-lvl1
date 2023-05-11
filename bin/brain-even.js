@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 import readlineSync from 'readline-sync';
-import greeting, { getName } from '../src/cli.js';
+import { getName } from '../src/cli.js';
+import gameWrapper from '../src/index.js';
 
 function getRandomNumber() {
   const randomNumber = Math.random() * 100;
@@ -14,6 +15,8 @@ function isEven(number) {
 }
 
 function evenGame(numberAttemps = 3) {
+  console.log('Answer "yes" if the number is even, otherwise answer "no".');
+
   const name = getName();
   let correctAnswers = 0;
 
@@ -42,10 +45,4 @@ function evenGame(numberAttemps = 3) {
   }
 }
 
-function init() {
-  greeting();
-  console.log('Answer "yes" if the number is even, otherwise answer "no".');
-  evenGame();
-}
-
-init();
+gameWrapper(evenGame);

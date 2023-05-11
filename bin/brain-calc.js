@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 import readlineSync from 'readline-sync';
-import greeting, { getName } from '../src/cli.js';
+import { getName } from '../src/cli.js';
+import gameWrapper from '../src/index.js';
 
 function getOperand() {
   const randomNumber = Math.random() * 100;
@@ -28,6 +29,8 @@ function calculateExpression(firstOperand, secondOperand, operator) {
 }
 
 function calcGame() {
+  console.log('What is the result of the expression?');
+
   const name = getName();
   const numberAttemps = 3;
   let correctAnswers = 0;
@@ -61,10 +64,4 @@ function calcGame() {
   }
 }
 
-function init() {
-  greeting();
-  console.log('What is the result of the expression?');
-  calcGame();
-}
-
-init();
+gameWrapper(calcGame);
