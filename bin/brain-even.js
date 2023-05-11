@@ -3,8 +3,6 @@
 import readlineSync from 'readline-sync';
 import greeting, { getName } from '../src/cli.js';
 
-console.log('Answer "yes" if the number is even, otherwise answer "no".');
-
 function getRandomNumber() {
   const randomNumber = Math.random() * 100;
   return Math.round(randomNumber);
@@ -46,6 +44,7 @@ function evenGame(numberAttemps = 3) {
 
 function init() {
   greeting();
+  console.log('Answer "yes" if the number is even, otherwise answer "no".');
   evenGame();
 }
 
