@@ -1,13 +1,7 @@
 #!/usr/bin/env node
 
 import readlineSync from 'readline-sync';
-import { getName } from '../src/cli.js';
 import gameWrapper from '../src/index.js';
-
-function getOperand() {
-  const randomNumber = Math.random() * 100;
-  return Math.round(randomNumber);
-}
 
 function getRandomOperator() {
   const availableOperators = ['+', '-', '*'];
@@ -28,16 +22,12 @@ function calculateExpression(firstOperand, secondOperand, operator) {
   }
 }
 
-function calcGame() {
+function calcGame({ numberAttemps = 3, userName, getRandomNumber }) {
   console.log('What is the result of the expression?');
-
-  const name = getName();
-  const numberAttemps = 3;
   let correctAnswers = 0;
 
   for (let i = 0; i < numberAttemps; i += 1) {
-    const firstOperand = getOperand();
-    const secondOperand = getOperand();
+    const [firstOperand, secondOperand] = getRandomNumber({ upNumber: 10 });
     const mathOperator = getRandomOperator();
     const result = calculateExpression(
       firstOperand,
@@ -58,9 +48,9 @@ function calcGame() {
   }
 
   if (correctAnswers === numberAttemps) {
-    console.log(`Congratulations, ${name}!`);
+    console.log(`Congratulations, ${userName}!`);
   } else {
-    console.log(`Let's try again, ${name}!`);
+    console.log(`Let's try again, ${userName}!`);
   }
 }
 

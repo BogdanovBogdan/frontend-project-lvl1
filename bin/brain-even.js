@@ -1,27 +1,22 @@
 #!/usr/bin/env node
 
 import readlineSync from 'readline-sync';
-import { getName } from '../src/cli.js';
 import gameWrapper from '../src/index.js';
-
-function getRandomNumber() {
-  const randomNumber = Math.random() * 100;
-  return Math.round(randomNumber);
-}
 
 function isEven(number) {
   const isEvenNumber = number % 2 === 0;
   return isEvenNumber ? 'yes' : 'no';
 }
 
-function evenGame(numberAttemps = 3) {
+function evenGame({ numberAttemps = 3, userName, getRandomNumber }) {
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
-
-  const name = getName();
   let correctAnswers = 0;
 
   for (let i = 0; i < numberAttemps; i += 1) {
-    const randomNumber = getRandomNumber();
+    const [randomNumber] = getRandomNumber({
+      upNumber: 1000,
+      amountNumbers: 1,
+    });
     console.log(`Question: ${randomNumber}`);
     const answer = readlineSync.question('Your answer: ').toLowerCase();
     const isEvenNumber = isEven(randomNumber);
@@ -39,9 +34,9 @@ function evenGame(numberAttemps = 3) {
   }
 
   if (correctAnswers === numberAttemps) {
-    console.log(`Congratulations, ${name}!`);
+    console.log(`Congratulations, ${userName}!`);
   } else {
-    console.log(`Let's try again, ${name}!`);
+    console.log(`Let's try again, ${userName}!`);
   }
 }
 
