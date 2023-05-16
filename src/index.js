@@ -2,7 +2,7 @@
 
 import greeting from './cli.js';
 
-function getRandomNumber({ upNumber = 100, amountNumbers = 2 }) {
+export function getRandomNumber(upNumber = 100, amountNumbers = 2) {
   const numbers = [];
   for (let i = 0; i < amountNumbers; i += 1) {
     const randomNumber = Math.round(Math.random() * upNumber);
@@ -11,7 +11,7 @@ function getRandomNumber({ upNumber = 100, amountNumbers = 2 }) {
   return numbers;
 }
 
-export default function gameWrapper(game) {
+export function gameWrapper(game) {
   const userName = greeting();
-  game({ userName, getRandomNumber });
+  game({ userName });
 }

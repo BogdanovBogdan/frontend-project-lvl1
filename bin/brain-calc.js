@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import readlineSync from 'readline-sync';
-import gameWrapper from '../src/index.js';
+import { gameWrapper, getRandomNumber } from '../src/index.js';
 
 function getRandomOperator() {
   const availableOperators = ['+', '-', '*'];
@@ -22,12 +22,12 @@ function calculateExpression(firstOperand, secondOperand, operator) {
   }
 }
 
-function calcGame({ numberAttemps = 3, userName, getRandomNumber }) {
+function calcGame({ numberAttemps = 3, userName }) {
   console.log('What is the result of the expression?');
   let correctAnswers = 0;
 
   for (let i = 0; i < numberAttemps; i += 1) {
-    const [firstOperand, secondOperand] = getRandomNumber({ upNumber: 10 });
+    const [firstOperand, secondOperand] = getRandomNumber(10);
     const mathOperator = getRandomOperator();
     const result = calculateExpression(
       firstOperand,
