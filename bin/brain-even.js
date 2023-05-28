@@ -13,7 +13,7 @@ function evenGame({ numberAttemps = 3, userName }) {
   let correctAnswers = 0;
 
   for (let i = 0; i < numberAttemps; i += 1) {
-    const [randomNumber] = getRandomNumber(1000, 1);
+    const [randomNumber] = getRandomNumber({ max: 1000, amountNumber: 1 });
     console.log(`Question: ${randomNumber}`);
     const answer = readlineSync.question('Your answer: ').toLowerCase();
     const isEvenNumber = isEven(randomNumber);

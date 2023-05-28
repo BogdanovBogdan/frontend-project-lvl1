@@ -33,7 +33,10 @@ function gcdGame({ numberAttemps = 3, userName }) {
   let correctAnswers = 0;
 
   for (let i = 0; i < numberAttemps; i += 1) {
-    const [firstNum, secondNum] = getRandomNumber(100, 2);
+    const [firstNum, secondNum] = getRandomNumber({
+      max: 100,
+      amountNumber: 2,
+    });
 
     const gcdNumber = getGCDNumber(firstNum, secondNum);
 

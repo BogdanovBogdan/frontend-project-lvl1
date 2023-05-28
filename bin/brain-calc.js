@@ -27,7 +27,7 @@ function calcGame({ numberAttemps = 3, userName }) {
   let correctAnswers = 0;
 
   for (let i = 0; i < numberAttemps; i += 1) {
-    const [firstOperand, secondOperand] = getRandomNumber(10);
+    const [firstOperand, secondOperand] = getRandomNumber({ max: 10 });
     const mathOperator = getRandomOperator();
     const result = calculateExpression(
       firstOperand,
