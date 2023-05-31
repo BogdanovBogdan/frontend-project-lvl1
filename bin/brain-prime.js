@@ -5,9 +5,9 @@ import { gameWrapper, getRandomNumber } from '../src/index.js';
 
 function checkIsPrime(number) {
   for (let i = 2; i < number; i += 1) {
-    if (number % i === 0) return false;
+    if (number % i === 0) return 'no';
   }
-  return true;
+  return 'yes';
 }
 
 function primeGame({ numberAttemps = 3, userName }) {
@@ -21,19 +21,13 @@ function primeGame({ numberAttemps = 3, userName }) {
 
     console.log(`Question: ${number}`);
     const answer = readlineSync.question('Your answer: ').toLowerCase();
+    const isCorrectAnswer = isPrime === answer;
 
-    if (isPrime && answer === 'yes') {
-      console.log('Correct');
-      correctAnswers += 1;
-    } else if (!isPrime && answer === 'no') {
+    if (isCorrectAnswer) {
       console.log('Correct');
       correctAnswers += 1;
     } else {
-      console.log(
-        `${answer} is wrong answer( ${number} is ${
-          isPrime ? '' : 'not'
-        } the prime number`
-      );
+      console.log(`${answer} is wrong answer. Correct answer was ${isPrime}`);
       break;
     }
   }
