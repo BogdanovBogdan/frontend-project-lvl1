@@ -6,7 +6,7 @@ import { gameWrapper, getRandomNumber } from '../src/index.js';
 function getProgression(
   lengthOfProgression,
   firstNumberProgression,
-  stepProgression
+  stepProgression,
 ) {
   const progression = [];
   for (let i = 0; i < lengthOfProgression; i += 1) {
@@ -50,7 +50,7 @@ function progressionGame({ numberAttemps = 3, userName }) {
     const progression = getProgression(
       lengthOfProgression,
       firstNumberProgression,
-      stepProgression
+      stepProgression,
     );
 
     const hiddenNumber = hideNumberProgression(progression);
@@ -63,7 +63,7 @@ function progressionGame({ numberAttemps = 3, userName }) {
       correctAnswers += 1;
     } else {
       console.log(
-        `${answer} is wrong answer(. Correct answer was ${hiddenNumber}`
+        `${answer} is wrong answer(. Correct answer was ${hiddenNumber}`,
       );
       break;
     }

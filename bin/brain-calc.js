@@ -32,7 +32,7 @@ function calcGame({ numberAttemps = 3, userName }) {
     const result = calculateExpression(
       firstOperand,
       secondOperand,
-      mathOperator
+      mathOperator,
     );
     console.log(`Question: ${firstOperand} ${mathOperator} ${secondOperand}`);
     const answer = Number(readlineSync.question('Your answer: '));

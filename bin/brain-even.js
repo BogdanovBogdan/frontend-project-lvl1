@@ -24,7 +24,7 @@ function evenGame({ numberAttemps = 3, userName }) {
       correctAnswers += 1;
     } else {
       console.log(
-        `${answer} is wrong answer ;(. Correct answer was ${isEvenNumber}.`
+        `${answer} is wrong answer ;(. Correct answer was ${isEvenNumber}.`,
       );
       break;
     }
