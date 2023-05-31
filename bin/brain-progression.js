@@ -23,7 +23,7 @@ function hideNumberProgression(progression) {
     amountNumbers: 1,
   });
 
-  const [hiddenNumber] = progression.splice(positionOfNumber, 1, '.');
+  const [hiddenNumber] = progression.splice(positionOfNumber, 1, '..');
   return String(hiddenNumber);
 }
 
