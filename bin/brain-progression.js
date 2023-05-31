@@ -63,7 +63,7 @@ function progressionGame({ numberAttemps = 3, userName }) {
       correctAnswers += 1;
     } else {
       console.log(
-        `${answer} is wrong answer(. Correct ansewer was ${hiddenNumber}`
+        `${answer} is wrong answer(. Correct answer was ${hiddenNumber}`
       );
       break;
     }

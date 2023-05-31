@@ -21,11 +21,11 @@ function getGCDNumber(a, b) {
   const [greaterNum, lesserNum] = getLesserAndGreaterNums(a, b);
 
   if (!hasRemainderDivision(greaterNum, lesserNum)) {
-    return lesserNum;
+    return String(lesserNum);
   }
 
   const GCDNumber = calculateGCD(greaterNum, lesserNum);
-  return `${GCDNumber}`;
+  return String(GCDNumber);
 }
 
 function gcdGame({ numberAttemps = 3, userName }) {
@@ -47,7 +47,7 @@ function gcdGame({ numberAttemps = 3, userName }) {
       console.log('Correct');
       correctAnswers += 1;
     } else {
-      console.log(`${answer} is wrong anser( Correct ansewer was ${gcdNumber}`);
+      console.log(`${answer} is wrong answer( Correct answer was ${gcdNumber}`);
       break;
     }
   }

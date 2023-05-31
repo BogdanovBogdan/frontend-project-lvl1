@@ -5,7 +5,7 @@ import { gameWrapper, getRandomNumber } from '../src/index.js';
 
 function isEven(number) {
   const isEvenNumber = number % 2 === 0;
-  return isEvenNumber ? 'yes' : 'no';
+  return isEvenNumber;
 }
 
 function evenGame({ numberAttemps = 3, userName }) {
@@ -18,7 +18,7 @@ function evenGame({ numberAttemps = 3, userName }) {
     const answer = readlineSync.question('Your answer: ').toLowerCase();
     const isEvenNumber = isEven(randomNumber);
 
-    if (isEvenNumber === answer) {
+    if (isEvenNumber && answer === 'yes') {
       console.log('Correct!');
       correctAnswers += 1;
     } else if (isEvenNumber && answer === 'no') {
