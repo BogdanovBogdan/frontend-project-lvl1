@@ -33,7 +33,7 @@ function progressionGame({ numberAttemps = 3, userName }) {
 
   for (let i = 0; i < numberAttemps; i += 1) {
     const [lengthOfProgression] = getRandomNumber({
-      min: 5,
+      min: 6,
       max: 10,
       amountNumbers: 1,
     });
