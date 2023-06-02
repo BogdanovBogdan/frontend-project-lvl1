@@ -52,9 +52,8 @@ function progressionGame() {
       firstNumberProgression,
       stepProgression,
     );
-    const hiddenNumber = hideNumberProgression(progression);
     const question = `${progression.join(' ')}`;
-    const correctAnswer = hiddenNumber;
+    const correctAnswer = hideNumberProgression(progression);
 
     return { question, correctAnswer };
   };
