@@ -13,33 +13,47 @@ export function getRandomNumber({ min = 1, max = 100, amountNumbers = 2 }) {
 }
 
 export function gameWrapper(game) {
-  const userName = greeting();
   const { rules, run } = game();
-  const totalAttempts = 3;
-  let correctAnswers = 0;
+  let userName;
+  let totalAttempts;
+  let correctAnswers;
 
-  rules();
+  const initGame = () => {
+    userName = greeting();
+    rules();
+    totalAttempts = 3;
+    correctAnswers = 0;
+  };
 
-  for (let attempts = 0; attempts < totalAttempts; attempts += 1) {
-    const { question, correctAnswer } = run();
-    console.log(`Question: ${question}`);
-    const answer = readlineSync.question('Your answer: ');
-    const isCorrectAnswer = answer === String(correctAnswer);
-
-    if (isCorrectAnswer) {
-      console.log('Correct!');
-      correctAnswers += 1;
+  const checkResults = () => {
+    if (correctAnswers === totalAttempts) {
+      console.log(`Congratulations, ${userName}!`);
     } else {
-      console.log(
-        `'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`,
-      );
-      break;
+      console.log(`Let's try again, ${userName}!`);
     }
-  }
+  };
 
-  if (correctAnswers === totalAttempts) {
-    console.log(`Congratulations, ${userName}!`);
-  } else {
-    console.log(`Let's try again, ${userName}!`);
-  }
+  const playGame = () => {
+    for (let attempts = 0; attempts < totalAttempts; attempts += 1) {
+      const { question, correctAnswer } = run();
+      console.log(`Question: ${question}`);
+      const answer = readlineSync.question('Your answer: ');
+      const isCorrectAnswer = answer === String(correctAnswer);
+
+      if (isCorrectAnswer) {
+        console.log('Correct!');
+        correctAnswers += 1;
+      } else {
+        console.log(
+          `'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`,
+        );
+        break;
+      }
+    }
+
+    checkResults();
+  };
+
+  initGame();
+  playGame();
 }
