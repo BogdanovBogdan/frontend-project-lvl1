@@ -13,7 +13,8 @@ function evenGame() {
 
   const run = () => {
     const [randomNumber] = getRandomNumber({ max: 1000, amountNumber: 1 });
-    const correctAnswer = isEven(randomNumber);
+    const isEvenNumber = isEven(randomNumber);
+    const correctAnswer = isEvenNumber ? 'yes' : 'no';
 
     return { question: randomNumber, correctAnswer };
   };
