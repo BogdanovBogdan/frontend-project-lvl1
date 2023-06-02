@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-
-import readlineSync from 'readline-sync';
 import { gameWrapper, getRandomNumber } from '../src/index.js';
 
 function getRandomOperator() {
@@ -22,35 +20,25 @@ function calculateExpression(firstOperand, secondOperand, operator) {
   }
 }
 
-function calcGame({ numberAttemps = 3, userName }) {
-  console.log('What is the result of the expression?');
-  let correctAnswers = 0;
+function calcGame() {
+  const rules = () => {
+    console.log('What is the result of the expression?');
+  };
 
-  for (let i = 0; i < numberAttemps; i += 1) {
+  const run = () => {
     const [firstOperand, secondOperand] = getRandomNumber({ max: 10 });
     const mathOperator = getRandomOperator();
-    const result = calculateExpression(
+    const question = `${firstOperand} ${mathOperator} ${secondOperand}`;
+    const correctAnswer = calculateExpression(
       firstOperand,
       secondOperand,
       mathOperator,
     );
-    console.log(`Question: ${firstOperand} ${mathOperator} ${secondOperand}`);
-    const answer = Number(readlineSync.question('Your answer: '));
 
-    if (answer === result) {
-      console.log('Correct!');
-      correctAnswers += 1;
-    } else {
-      console.log(`${answer} is wrong answer ;(. Correct answer was ${result}`);
-      break;
-    }
-  }
+    return { question, correctAnswer };
+  };
 
-  if (correctAnswers === numberAttemps) {
-    console.log(`Congratulations, ${userName}!`);
-  } else {
-    console.log(`Let's try again, ${userName}!`);
-  }
+  return { rules, run };
 }
 
 gameWrapper(calcGame);

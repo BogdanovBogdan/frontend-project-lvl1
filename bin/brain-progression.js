@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import readlineSync from 'readline-sync';
 import { gameWrapper, getRandomNumber } from '../src/index.js';
 
 function getProgression(
@@ -24,14 +23,15 @@ function hideNumberProgression(progression) {
   });
 
   const [hiddenNumber] = progression.splice(positionOfNumber, 1, '..');
-  return String(hiddenNumber);
+  return hiddenNumber;
 }
 
-function progressionGame({ numberAttemps = 3, userName }) {
-  console.log('What number is missing in the progression?');
-  let correctAnswers = 0;
+function progressionGame() {
+  const rules = () => {
+    console.log('What number is missing in the progression?');
+  };
 
-  for (let i = 0; i < numberAttemps; i += 1) {
+  const run = () => {
     const [lengthOfProgression] = getRandomNumber({
       min: 6,
       max: 10,
@@ -52,28 +52,14 @@ function progressionGame({ numberAttemps = 3, userName }) {
       firstNumberProgression,
       stepProgression,
     );
-
     const hiddenNumber = hideNumberProgression(progression);
+    const question = `${progression.join(' ')}`;
+    const correctAnswer = hiddenNumber;
 
-    console.log(`Question: ${progression.join(' ')}`);
-    const answer = readlineSync.question('Your answer: ').toLowerCase();
+    return { question, correctAnswer };
+  };
 
-    if (hiddenNumber === answer) {
-      console.log('Correct!');
-      correctAnswers += 1;
-    } else {
-      console.log(
-        `${answer} is wrong answer(. Correct answer was ${hiddenNumber}`,
-      );
-      break;
-    }
-  }
-
-  if (correctAnswers === numberAttemps) {
-    console.log(`Congratulations, ${userName}!`);
-  } else {
-    console.log(`Let's try again, ${userName}!`);
-  }
+  return { rules, run };
 }
 
 gameWrapper(progressionGame);
