@@ -52,10 +52,10 @@ function progressionGame() {
       firstNumberProgression,
       stepProgression,
     );
+    const hiddenNumber = hideNumberProgression(progression);
     const question = `${progression.join(' ')}`;
-    const correctAnswer = hideNumberProgression(progression);
 
-    return { question, correctAnswer };
+    return { question, correctAnswer: hiddenNumber };
   };
 
   return { rules, run };
