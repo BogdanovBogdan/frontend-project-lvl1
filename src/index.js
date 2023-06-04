@@ -12,48 +12,46 @@ export function getRandomNumber({ min = 1, max = 100, amountNumbers = 2 }) {
   return numbers;
 }
 
-export function gameWrapper(game) {
-  const { rules, run } = game();
-  let userName;
-  let totalAttempts;
-  let correctAnswers;
+const checkResults = ({ userName, totalAttempts, correctAnswers }) => {
+  if (correctAnswers === totalAttempts) {
+    console.log(`Congratulations, ${userName}!`);
+  } else {
+    console.log(`Let's try again, ${userName}!`);
+  }
+};
 
-  const initGame = () => {
-    userName = greeting();
-    rules();
-    totalAttempts = 3;
-    correctAnswers = 0;
-  };
+const playGame = (state, runGame) => {
+  const { totalAttempts } = state;
+  console.log({ state });
+  for (let attempts = 0; attempts < totalAttempts; attempts += 1) {
+    const { question, correctAnswer } = runGame();
+    console.log(`Question: ${question}`);
+    const answer = readlineSync.question('Your answer: ');
+    const isCorrectAnswer = answer === String(correctAnswer);
 
-  const checkResults = () => {
-    if (correctAnswers === totalAttempts) {
-      console.log(`Congratulations, ${userName}!`);
+    if (isCorrectAnswer) {
+      console.log('Correct!');
+      const stateCopy = state;
+      stateCopy.correctAnswers += 1;
     } else {
-      console.log(`Let's try again, ${userName}!`);
+      console.log(
+        `'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`,
+      );
+      break;
     }
+  }
+  checkResults(state);
+};
+
+export function gameWrapper(game) {
+  const { run, rules: showRules } = game();
+  const userName = greeting();
+  const state = {
+    userName,
+    totalAttempts: 3,
+    correctAnswers: 0,
   };
 
-  const playGame = () => {
-    for (let attempts = 0; attempts < totalAttempts; attempts += 1) {
-      const { question, correctAnswer } = run();
-      console.log(`Question: ${question}`);
-      const answer = readlineSync.question('Your answer: ');
-      const isCorrectAnswer = answer === String(correctAnswer);
-
-      if (isCorrectAnswer) {
-        console.log('Correct!');
-        correctAnswers += 1;
-      } else {
-        console.log(
-          `'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`,
-        );
-        break;
-      }
-    }
-
-    checkResults();
-  };
-
-  initGame();
-  playGame();
+  showRules();
+  playGame(state, run);
 }
