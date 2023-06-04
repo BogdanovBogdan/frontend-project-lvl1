@@ -32,20 +32,13 @@ function progressionGame() {
   };
 
   const run = () => {
-    const [lengthOfProgression] = getRandomNumber({
-      min: 6,
-      max: 10,
-      amountNumbers: 1,
-    });
-    const [firstNumberProgression] = getRandomNumber({
-      max: 1000,
-      amountNumbers: 1,
-    });
-    const [stepProgression] = getRandomNumber({
-      min: 2,
-      max: 10,
-      amountNumbers: 1,
-    });
+    const lengthOfProgressionOptions = { min: 6, max: 10, amountNumbers: 1 };
+    const firstNumberOptions = { max: 1000, amountNumbers: 1 };
+    const stepProgressionOptions = { min: 2, max: 10, amountNumbers: 1 };
+
+    const [lengthOfProgression] = getRandomNumber(lengthOfProgressionOptions);
+    const [firstNumberProgression] = getRandomNumber(firstNumberOptions);
+    const [stepProgression] = getRandomNumber(stepProgressionOptions);
 
     const progression = getProgression(
       lengthOfProgression,
